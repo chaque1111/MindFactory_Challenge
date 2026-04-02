@@ -26,6 +26,13 @@ services:
       POSTGRES_PORT: 5432
       POSTGRES_HOST: db
 
+  frontend:
+    build: ./front
+    container_name: mindfactory-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
     
 volumes:
   postgres_data:
