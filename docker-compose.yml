@@ -27,12 +27,16 @@ services:
       POSTGRES_HOST: db
 
   frontend:
-    build: ./front
+    build:
+      context: ./front
+      args:
+        VITE_API_URL: http://localhost:3000
     container_name: mindfactory-frontend
     ports:
       - "5173:80"
     depends_on:
       - backend
-    
+
+
 volumes:
   postgres_data:

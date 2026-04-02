@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { ProcessListResponse, ProcessRecord } from '../types/process'
+import { API_BASE_URL, buildApiUrl } from '../config/api'
 
-const RECORDS_URL = '/records'
+const RECORDS_URL = buildApiUrl('/records')
 
 function formatDate(value: string | null): string {
   if (!value) {
@@ -52,7 +53,7 @@ export function ProcessListPage() {
       } catch (err) {
         const message =
           err instanceof TypeError
-            ? 'No se pudo conectar al backend. Verifica que el API esté corriendo en http://localhost:3000'
+            ? `No se pudo conectar al backend. Verifica VITE_API_URL (${API_BASE_URL || 'no configurado'})`
             : err instanceof Error
               ? err.message
               : 'Error desconocido al consultar Registros'

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ChangeEvent } from 'react'
+import { API_BASE_URL, buildApiUrl } from '../config/api'
 
-const UPLOAD_URL = '/records/upload'
+const UPLOAD_URL = buildApiUrl('/records/upload')
 
 interface UploadJobResponse {
   id: string
@@ -99,7 +100,7 @@ export function UploadProcessPage() {
     } catch (err) {
       const message =
         err instanceof TypeError
-          ? 'No se pudo conectar al backend. Verifica que el API esté corriendo en http://localhost:3000'
+          ? `No se pudo conectar al backend. Verifica VITE_API_URL (${API_BASE_URL || 'no configurado'})`
           : err instanceof Error
             ? err.message
             : 'Error desconocido al cargar el archivo'
