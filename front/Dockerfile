@@ -11,7 +11,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run dev
+RUN npm run build
 
 
 # Production stage
